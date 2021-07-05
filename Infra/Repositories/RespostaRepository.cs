@@ -40,10 +40,5 @@ namespace Infra.Repositories
         {
             return await _context.Respostas.FirstOrDefaultAsync(r => r.Id.Equals(id));
         }
-
-        public async Task<IEnumerable<Resposta>> ListarTodos()
-        {
-            return await _context.Respostas.AsNoTracking().ToListAsync();
-        }
     }
 }
