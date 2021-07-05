@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Api.ViewModels
 {
@@ -14,5 +15,7 @@ namespace Api.ViewModels
 
         [DataType(DataType.Upload)]
         public string Foto { get; set; }
+
+        public IEnumerable<RespostaViewModel> Respostas { get; set; }
     }
 }

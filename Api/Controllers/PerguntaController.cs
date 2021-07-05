@@ -73,10 +73,10 @@ namespace Api.Controllers
             }
         }
 
-        [HttpGet("buscar-por-id/{id}")]
-        public async Task<IActionResult> BuscarPorId(int id)
+        [HttpGet("buscar-com-respostas/{id}")]
+        public async Task<IActionResult> BuscarComRespostas(int id)
         {
-            Pergunta pergunta = await _perguntaRepository.BuscarPorId(id);
+            Pergunta pergunta = await _perguntaRepository.BuscarComRespostas(id);
 
             if (pergunta == null)
                 return BadRequest(new { mensagem = "Não existe uma pergunta com esse código" });
@@ -93,7 +93,6 @@ namespace Api.Controllers
                 return BadRequest(new { mensagem = "Não existem perguntas com esse título" });
 
             return Ok(PerguntaFactory.MapearListaDePerguntaViewModel(listaDePerguntas));
-
         }
         
         [HttpGet("listar-todas")]

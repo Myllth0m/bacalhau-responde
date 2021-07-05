@@ -24,7 +24,7 @@ namespace Infra.Repositories
 
             dadosDaResposta.AtualizarDados(resposta.Descricao, resposta.Foto);
 
-            _context.Update(resposta);
+            _context.Update(dadosDaResposta);
             await _context.SaveChangesAsync();
         }
 

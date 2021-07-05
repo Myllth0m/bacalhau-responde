@@ -22,16 +22,28 @@ namespace Api.Factories
                 Id = pergunta.Id,
                 Titulo = pergunta.Titulo,
                 Descricao = pergunta.Descricao,
-                Foto = pergunta.Foto
+                Foto = pergunta.Foto,
+                Respostas = RespostaFactory.MapearListaDeRespostaViewModel(pergunta.Respostas)
             };
         }
 
         public static IEnumerable<PerguntaViewModel> MapearListaDePerguntaViewModel(IEnumerable<Pergunta> listaDePerguntas)
         {
             var listaDePerguntaViewModel = new List<PerguntaViewModel>();
+            PerguntaViewModel perguntaViewModel;
 
             foreach (var pergunta in listaDePerguntas)
-                listaDePerguntaViewModel.Add(MapearPerguntaViewModel(pergunta));
+            {
+                perguntaViewModel = new PerguntaViewModel
+                {
+                    Id = pergunta.Id,
+                    Titulo = pergunta.Titulo,
+                    Descricao = pergunta.Descricao,
+                    Foto = pergunta.Foto
+                };
+
+                listaDePerguntaViewModel.Add(perguntaViewModel);
+            }
 
             return listaDePerguntaViewModel;
         }

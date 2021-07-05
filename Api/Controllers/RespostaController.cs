@@ -63,6 +63,7 @@ namespace Api.Controllers
             try
             {
                 await _respostaRepository.Excluir(id);
+
                 return Ok(new { mensagem = "Resposta excluida com sucesso" });
             }
             catch (Exception)

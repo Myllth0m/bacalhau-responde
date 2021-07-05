@@ -39,7 +39,12 @@ namespace Infra.Repositories
 
         public async Task<Pergunta> BuscarPorId(int id)
         {
-            return await _context.Perguntas.FirstOrDefaultAsync(p => p.Id.Equals(id));
+            return await _context.Perguntas.AsNoTracking().FirstOrDefaultAsync(p => p.Id.Equals(id));
+        }
+
+        public async Task<Pergunta> BuscarComRespostas(int id)
+        {
+            return await _context.Perguntas.AsNoTracking().Include(p => p.Respostas).FirstOrDefaultAsync(p => p.Id.Equals(id));
         }
 
         public async Task<IList<Pergunta>> ListarPorTitulo(string titulo)

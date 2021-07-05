@@ -21,7 +21,7 @@ namespace Domain.Entities
         public string Titulo { get; private set; }
         public string Descricao { get; private set; }
         public string Foto { get; private set; }
-        public ICollection<Resposta> Respostas { get; private set; }
+        public virtual ICollection<Resposta> Respostas { get; private set; }
 
         public void AtualizarDados(
             string titulo,

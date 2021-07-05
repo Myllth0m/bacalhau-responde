@@ -14,6 +14,8 @@ namespace Domain.IRepositories
 
         Task<Pergunta> BuscarPorId(int id);
 
+        Task<Pergunta> BuscarComRespostas(int id);
+
         Task<IList<Pergunta>> ListarPorTitulo(string titulo);
 
         Task<IList<Pergunta>> ListarTodas();
