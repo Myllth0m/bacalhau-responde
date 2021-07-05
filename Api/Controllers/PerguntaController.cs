@@ -22,7 +22,7 @@ namespace Api.Controllers
         public async Task<IActionResult> Criar([FromBody] PerguntaViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return BadRequest(new { message = "Preencha os campos obrigatórios" });
+                return BadRequest(new { mensagem = "Preencha os campos obrigatórios" });
 
             try
             {
@@ -42,7 +42,7 @@ namespace Api.Controllers
         public async Task<IActionResult> Alterar([FromBody] PerguntaViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return BadRequest(new { message = "Todos os campos são obrigatórios" });
+                return BadRequest(new { mensagem = "Preencha os campos obrigatórios" });
 
             try
             {
@@ -65,7 +65,7 @@ namespace Api.Controllers
             {
                 await _perguntaRepository.Excluir(id);
 
-                return Ok(new { mensagem = "Pergunta exluida com sucesso" });
+                return Ok(new { mensagem = "Pergunta excluida com sucesso" });
             }
             catch (Exception)
             {
