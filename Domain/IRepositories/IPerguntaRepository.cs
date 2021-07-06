@@ -1,5 +1,4 @@
 ﻿using Domain.Entities;
-using Infra.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

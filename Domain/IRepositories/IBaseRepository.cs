@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using System.Threading.Tasks;
 
-namespace Infra.Interfaces
+namespace Domain.IRepositories
 {
     public interface IBaseRepository<T> where T : Base
     {

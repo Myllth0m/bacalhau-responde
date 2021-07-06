@@ -2,9 +2,8 @@
 
 using Domain.Entities;
 using Infra.DataContext;
-using Infra.Interfaces;
+using Domain.IRepositories;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Infra.Repositories
