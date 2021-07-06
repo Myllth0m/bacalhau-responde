@@ -1,19 +1,13 @@
 ﻿using Domain.Entities;
+using Infra.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Domain.IRepositories
 {
-    public interface IRespostaRepository
+    public interface IRespostaRepository : IBaseRepository<Resposta>
     {
-        Task Criar(Resposta resposta);
-
         Task Alterar(int id, Resposta resposta);
-
-        Task Excluir(int id);
-
-        Task<Resposta> BuscarPorId(int id);
-
         Task<IEnumerable<Resposta>> ListarTodos();
     }
 }
