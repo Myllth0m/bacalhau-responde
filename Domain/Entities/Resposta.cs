@@ -1,7 +1,8 @@
 ﻿namespace Domain.Entities
 {
-    public class Resposta
+    public class Resposta : Base
     {
+        //Construtores
         protected Resposta() { }
         public Resposta(
             int id,
@@ -15,12 +16,11 @@
             PerguntaId = perguntaId;
         }
 
-        public int Id { get; private set; }
-        public string Descricao { get; set; }
-        public string Foto { get; private set; }
+        //Propriedades
         public int PerguntaId { get; private set; }
         public virtual Pergunta Pergunta { get; private set; }
 
+        //Métodos
         public void AtualizarDados(
             string descricao,
             string foto)

@@ -4,16 +4,9 @@ using System.Threading.Tasks;
 
 namespace Domain.IRepositories
 {
-    public interface IPerguntaRepository
+    public interface IPerguntaRepository : IBaseRepository<Pergunta>
     {
-        Task Criar(Pergunta pergunta);
-
         Task Alterar(int id, Pergunta pergunta);
-        
-        Task Excluir(int id);
-
-        Task<Pergunta> BuscarPorId(int id);
-
         Task<Pergunta> BuscarComRespostas(int id);
 
         Task<IList<Pergunta>> ListarPorTitulo(string titulo);

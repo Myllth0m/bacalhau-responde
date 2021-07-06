@@ -2,8 +2,9 @@
 
 namespace Domain.Entities
 {
-    public class Pergunta
+    public class Pergunta : Base
     {
+        //Construtores
         protected Pergunta() { }
         public Pergunta(
             int id,
@@ -17,12 +18,11 @@ namespace Domain.Entities
             Foto = foto;
         }
 
-        public int Id { get; private set; }
+        //Propriedades
         public string Titulo { get; private set; }
-        public string Descricao { get; private set; }
-        public string Foto { get; private set; }
         public virtual ICollection<Resposta> Respostas { get; private set; }
 
+        //Métodos
         public void AtualizarDados(
             string titulo,
             string descricao,
