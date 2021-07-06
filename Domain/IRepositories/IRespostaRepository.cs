@@ -13,7 +13,5 @@ namespace Domain.IRepositories
         Task Excluir(int id);
 
         Task<Resposta> BuscarPorId(int id);
-
-        Task<IEnumerable<Resposta>> ListarTodos();
     }
 }
