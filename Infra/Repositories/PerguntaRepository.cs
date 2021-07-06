@@ -8,16 +8,11 @@ using System.Threading.Tasks;
 
 namespace Infra.Repositories
 {
-    public class PerguntaRepository : IPerguntaRepository
+    public class PerguntaRepository : BaseRepository<Pergunta>, IPerguntaRepository
     {
         private readonly Context _context;
-        public PerguntaRepository(Context context) => _context = context;
+        public PerguntaRepository(Context context) : base(context) => _context = context;
 
-        public async Task Criar(Pergunta pergunta)
-        {
-            _context.Perguntas.Add(pergunta);
-            await _context.SaveChangesAsync();
-        }
 
         public async Task Alterar(int id, Pergunta pergunta)
         {
@@ -27,19 +22,6 @@ namespace Infra.Repositories
 
             _context.Perguntas.Update(dadosDaPergunta);
             await _context.SaveChangesAsync();
-        }
-        
-        public async Task Excluir(int id)
-        {
-            var pergunta = await BuscarPorId(id);
-
-            _context.Perguntas.Remove(pergunta);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<Pergunta> BuscarPorId(int id)
-        {
-            return await _context.Perguntas.AsNoTracking().FirstOrDefaultAsync(p => p.Id.Equals(id));
         }
 
         public async Task<Pergunta> BuscarComRespostas(int id)
