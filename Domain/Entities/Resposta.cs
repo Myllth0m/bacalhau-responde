@@ -1,26 +1,25 @@
 ﻿namespace Domain.Entities
 {
-    public class Resposta : Base
+    public class Resposta : EntidadeBase
     {
-        //Construtores
         protected Resposta() { }
         public Resposta(
-            int id,
+            long id,
             string descricao,
             string foto,
-            int perguntaId)
+            long perguntaId)
         {
             Id = id;
+            PerguntaId = perguntaId;
             Descricao = descricao;
             Foto = foto;
-            PerguntaId = perguntaId;
         }
 
-        //Propriedades
-        public int PerguntaId { get; private set; }
+        public long PerguntaId { get; private set; }
+        public string Descricao { get; set; }
+        public string Foto { get; set; }
         public virtual Pergunta Pergunta { get; private set; }
 
-        //Métodos
         public void AtualizarDados(
             string descricao,
             string foto)

@@ -4,9 +4,9 @@ namespace Api.ViewModels
 {
     public class RespostaViewModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
-        public int PerguntaId { get; set; }
+        public long PerguntaId { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Descricao { get; set; }

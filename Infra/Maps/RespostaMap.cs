@@ -16,6 +16,8 @@ namespace Infra.Maps
             builder.Property(r => r.PerguntaId).IsRequired().HasColumnName("PERGUNTA_ID");
             builder.Property(r => r.Descricao).IsRequired().HasColumnName("DESCRICAO");
             builder.Property(r => r.Foto).HasColumnName("FOTO");
+            builder.Property(r => r.DataDeCriacao).HasColumnName("DATA_DE_CRIACAO");
+            builder.Property(r => r.DataDeAtualizacao).HasColumnName("DATA_DE_ATUALIZACAO");
 
             builder.HasOne(r => r.Pergunta).WithMany(p => p.Respostas);
         }

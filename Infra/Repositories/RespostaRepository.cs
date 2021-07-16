@@ -13,7 +13,7 @@ namespace Infra.Repositories
         public RespostaRepository(Context context) : base(context) => _context = context;
 
 
-        public async Task Alterar(int id, Resposta resposta)
+        public async Task Alterar(long id, Resposta resposta)
         {
             var dadosDaResposta = await BuscarPorId(id);
 
@@ -23,7 +23,7 @@ namespace Infra.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task Excluir(int id)
+        public async Task Excluir(long id)
         {
             var resposta = await BuscarPorId(id);
 
@@ -31,7 +31,7 @@ namespace Infra.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Resposta> BuscarPorId(int id)
+        public async Task<Resposta> BuscarPorId(long id)
         {
             return await _context.Respostas.FirstOrDefaultAsync(r => r.Id.Equals(id));
         }

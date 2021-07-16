@@ -6,8 +6,9 @@ namespace Domain.IRepositories
 {
     public interface IPerguntaRepository : IBaseRepository<Pergunta>
     {
-        Task Alterar(int id, Pergunta pergunta);
-        Task<Pergunta> BuscarComRespostas(int id);
+        Task Alterar(long id, Pergunta pergunta);
+
+        Task<Pergunta> BuscarComRespostas(long id);
 
         Task<IList<Pergunta>> ListarPorTitulo(string titulo);
 

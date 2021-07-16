@@ -5,7 +5,6 @@ namespace Domain.IRepositories
 {
     public interface IRespostaRepository : IBaseRepository<Resposta>
     {
-        Task Alterar(int id, Resposta resposta);
-
+        Task Alterar(long id, Resposta resposta);
     }
 }

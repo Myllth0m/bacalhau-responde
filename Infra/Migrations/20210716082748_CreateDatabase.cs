@@ -2,7 +2,7 @@
 
 namespace Infra.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class CreateDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,11 +14,13 @@ namespace Infra.Migrations
                 schema: "BACALHAU",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TITULO = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DESCRICAO = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FOTO = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    FOTO = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TITULO = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DATA_DE_CRIACAO = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DATA_DE_ATUALIZACAO = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -30,11 +32,13 @@ namespace Infra.Migrations
                 schema: "BACALHAU",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    PERGUNTA_ID = table.Column<long>(type: "bigint", nullable: false),
                     DESCRICAO = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FOTO = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PERGUNTA_ID = table.Column<int>(type: "int", nullable: false)
+                    DATA_DE_CRIACAO = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DATA_DE_ATUALIZACAO = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

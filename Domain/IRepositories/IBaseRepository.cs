@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 
 namespace Domain.IRepositories
 {
-    public interface IBaseRepository<T> where T : Base
+    public interface IBaseRepository<TEntidade> where TEntidade : EntidadeBase
     {
-        Task<T> Criar(T obj);
-        Task Excluir(int id);
-        Task<T> BuscarPorId(int id);
+        Task<TEntidade> Criar(TEntidade obj);
+
+        Task Excluir(long id);
+
+        Task<TEntidade> BuscarPorId(long id);
     }
 }

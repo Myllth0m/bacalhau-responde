@@ -20,11 +20,19 @@ namespace Infra.Migrations
 
             modelBuilder.Entity("Domain.Entities.Pergunta", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DataDeAtualizacao")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("DATA_DE_ATUALIZACAO");
+
+                    b.Property<string>("DataDeCriacao")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("DATA_DE_CRIACAO");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -47,11 +55,19 @@ namespace Infra.Migrations
 
             modelBuilder.Entity("Domain.Entities.Resposta", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DataDeAtualizacao")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("DATA_DE_ATUALIZACAO");
+
+                    b.Property<string>("DataDeCriacao")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("DATA_DE_CRIACAO");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -62,8 +78,8 @@ namespace Infra.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("FOTO");
 
-                    b.Property<int>("PerguntaId")
-                        .HasColumnType("int")
+                    b.Property<long>("PerguntaId")
+                        .HasColumnType("bigint")
                         .HasColumnName("PERGUNTA_ID");
 
                     b.HasKey("Id");

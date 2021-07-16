@@ -14,7 +14,7 @@ namespace Infra.Repositories
         public PerguntaRepository(Context context) : base(context) => _context = context;
 
 
-        public async Task Alterar(int id, Pergunta pergunta)
+        public async Task Alterar(long id, Pergunta pergunta)
         {
             var dadosDaPergunta = await BuscarPorId(id);
 
@@ -24,7 +24,7 @@ namespace Infra.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Pergunta> BuscarComRespostas(int id)
+        public async Task<Pergunta> BuscarComRespostas(long id)
         {
             return await _context.Perguntas.AsNoTracking().Include(p => p.Respostas).FirstOrDefaultAsync(p => p.Id.Equals(id));
         }
