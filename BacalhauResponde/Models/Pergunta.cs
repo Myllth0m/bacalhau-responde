@@ -19,8 +19,8 @@ namespace BacalhauResponde.Models
         }
 
         public string UsuarioId { get; private set; }
-        public string Descricao { get; set; }
-        public string Foto { get; set; }
+        public string Descricao { get; private set; }
+        public string Foto { get; private set; }
         public string Titulo { get; private set; }
         public IdentityUser Usuario { get; private set; }
         public virtual ICollection<Resposta> Respostas { get; private set; }

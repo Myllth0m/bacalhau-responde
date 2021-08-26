@@ -1,4 +1,6 @@
-﻿using BacalhauResponde.Models;
+﻿using System.Linq;
+using System.Security.Claims;
+using BacalhauResponde.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,13 +20,28 @@ namespace BacalhauResponde.Context
             this.gerenciadorDeAcesso = gerenciadorDeAcesso;
         }
 
+        private string UserId => gerenciadorDeAcesso.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
         public DbSet<Pergunta> Perguntas { get; set; }
         public DbSet<Resposta> Respostas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Pergunta>().ToTable("Perguntas");
-            builder.Entity<Resposta>().ToTable("Respostas");
+            foreach (var relacionamento in builder.Model.GetEntityTypes().SelectMany(x => x.GetForeignKeys()))
+                relacionamento.DeleteBehavior = DeleteBehavior.Restrict;
+
+            foreach (var propriedade in builder.Model.GetEntityTypes().SelectMany(x => x.GetProperties()).Where(x => x.ClrType == typeof(string)))
+                propriedade.SetColumnType("varchar(200)");
+
+            builder.HasDefaultSchema("BacalhauResponde");
+
+            builder.Entity<Pergunta>()
+                   .HasQueryFilter(x => x.UsuarioId == UserId)
+                   .ToTable("Perguntas");
+
+            builder.Entity<Resposta>()
+                   .HasQueryFilter(x => x.UsuarioId == UserId)
+                   .ToTable("Respostas");
 
             base.OnModelCreating(builder);
         }

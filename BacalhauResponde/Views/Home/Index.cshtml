@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Pergunta>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +7,13 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@foreach (var pergunta in Model)
+{
+    <div>
+        <h1>@(pergunta.Id)</h1>
+        <h1>@(pergunta.Titulo)</h1>
+        <h1>@(pergunta.Descricao)</h1>
+        <h1>@(pergunta.DataDeAtualizacao)</h1>
+    </div>
+}

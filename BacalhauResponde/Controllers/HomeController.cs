@@ -3,24 +3,30 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BacalhauResponde.Context;
 using BacalhauResponde.Models;
+using BacalhauResponde.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BacalhauResponde.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly BacalhauRespondeContexto contexto;
+        public HomeController(BacalhauRespondeContexto contexto)
         {
-            _logger = logger;
+            this.contexto = contexto;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var perguntas = await contexto.Perguntas
+                                          .AsNoTracking()
+                                          .ToListAsync();
+
+            return View(perguntas);
         }
 
         public IActionResult Privacy()

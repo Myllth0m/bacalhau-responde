@@ -47,11 +47,5 @@ namespace BacalhauResponde.Controllers
 
             return View(pergunta);
         }
-
-        [HttpPost]
-        public async Task<IActionResult> AtualizarPergunta(PerguntaViewModel perguntaViewModel)
-        {
-
-        }
     }
 }
