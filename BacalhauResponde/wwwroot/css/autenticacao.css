@@ -1,0 +1,4 @@
+﻿.form-control:focus,
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.0625rem rgb(49 132 253 / 50%);
+}

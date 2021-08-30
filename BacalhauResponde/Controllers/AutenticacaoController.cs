@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BacalhauResponde.Models;
 using BacalhauResponde.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,11 +8,11 @@ namespace BacalhauResponde.Controllers
 {
     public class AutenticacaoController : Controller
     {
-        private readonly UserManager<Usuario> gerenciadorDeUsuario;
-        private readonly SignInManager<Usuario> gerenciadorDeAcesso;
+        private readonly UserManager<IdentityUser> gerenciadorDeUsuario;
+        private readonly SignInManager<IdentityUser> gerenciadorDeAcesso;
         public AutenticacaoController(
-            UserManager<Usuario> gerenciadorDeUsuario,
-            SignInManager<Usuario> gerenciadorDeAcesso)
+            UserManager<IdentityUser> gerenciadorDeUsuario,
+            SignInManager<IdentityUser> gerenciadorDeAcesso)
         {
             this.gerenciadorDeUsuario = gerenciadorDeUsuario;
             this.gerenciadorDeAcesso = gerenciadorDeAcesso;
@@ -32,7 +31,7 @@ namespace BacalhauResponde.Controllers
             var resultadoDaTentativaDeLogin = await gerenciadorDeAcesso.PasswordSignInAsync(usuario, loginViewModel.Senha, false, true);
 
             if (resultadoDaTentativaDeLogin.Succeeded)
-                return RedirectToAction(nameof(Index), nameof(HomeController));
+                return RedirectToAction("Index", "Home");
             else
             {
                 TempData["ERRO"] = "Verifique se o login e a senha estão corretos";
@@ -45,6 +44,11 @@ namespace BacalhauResponde.Controllers
             await gerenciadorDeAcesso.SignOutAsync();
 
             return RedirectToAction(nameof(Entrar));
+        }
+
+        public IActionResult RecuperarSenha()
+        {
+            return View();
         }
     }
 }

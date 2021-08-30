@@ -1,9 +1,13 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BacalhauResponde</title>
+
+    <title>@ViewData["Title"] - Bacalhau Responde</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -11,25 +15,50 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BacalhauResponde</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Bacalhau Responde</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <nav class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link px-3 py-0 text-danger" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-lg bi-house-door"></i>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link px-3 py-0 text-danger" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-lg bi-newspaper"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 py-0 text-danger" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-lg bi-people"></i>
+                            </a>
                         </li>
                     </ul>
-                </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav float-right">
+                            <li class="nav-item">
+                                <span class="nav-link text-muted">
+                                    <em class="fa fa-user pr-2"></em> @User.Identity.Name
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-3 py-0 text-danger" asp-action="Sair" asp-controller="Autenticacao">
+                                    <i class="bi bi-lg bi-box-arrow-in-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    }
+                </nav>
             </div>
         </nav>
     </header>
     <div class="container">
+        <partial name="_Notificacao" />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -37,7 +66,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - BacalhauResponde - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - BacalhauResponde
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -18,7 +18,8 @@ namespace BacalhauResponde.Controllers
 
         public async Task<IActionResult> ListarTodasAsPerguntas()
         {
-            var listaDePerguntas = await contexto.Perguntas.AsNoTracking().ToListAsync();
+            var listaDePerguntas = await contexto.Perguntas.AsNoTracking()
+                                                           .ToListAsync();
 
             return View(listaDePerguntas);
         }

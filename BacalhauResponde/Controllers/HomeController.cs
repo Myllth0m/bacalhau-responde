@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using BacalhauResponde.Context;
 using BacalhauResponde.Models;
-using BacalhauResponde.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace BacalhauResponde.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly BacalhauRespondeContexto contexto;
