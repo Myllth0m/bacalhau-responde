@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BacalhauResponde.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BacalhauResponde.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuarioController : BaseController
     {
         private readonly UserManager<IdentityUser> gerenciadorDeUsuario;
         public UsuarioController(UserManager<IdentityUser> gerenciadorDeUsuario)
@@ -32,10 +33,13 @@ namespace BacalhauResponde.Controllers
                 var resultadoDaCriacaoDeUsuario = await gerenciadorDeUsuario.CreateAsync(novoUsuario, usuarioViewModel.Senha);
 
                 if (resultadoDaCriacaoDeUsuario.Succeeded)
+                {
+                    NotificarSucesso();
                     return RedirectToAction("Entrar", "Autenticacao");
+                }
             }
 
-            TempData["ERRO"] = "Não foi possível cadastrar um novo usuário";
+            NotificarErros(new List<string>() { "Não foi possível cadastrar um novo usuário" });
             return View(usuarioViewModel);
         }
     }

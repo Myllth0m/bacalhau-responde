@@ -1,19 +1,16 @@
-﻿@model List<Pergunta>
+﻿@model List<BacalhauResponde.Models.ViewModels.DashBoardViewModel>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Página inicial";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="d-flex flex-column col-8 mt-4">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <h1>@(item.UsuarioDaPergunta)</h1>
+            <h1>@(item.DataDeAtualizacao)</h1>
+            <h1>@(item.PerguntaId)</h1>
+            <h1>@(item.Titulo)</h1>
+            <h1>@(item.Descricao)</h1>
+        </div>
+    }
 </div>
-
-@foreach (var pergunta in Model)
-{
-    <div>
-        <h1>@(pergunta.Id)</h1>
-        <h1>@(pergunta.Titulo)</h1>
-        <h1>@(pergunta.Descricao)</h1>
-        <h1>@(pergunta.DataDeAtualizacao)</h1>
-    </div>
-}

@@ -42,12 +42,17 @@
                     {
                         <ul class="navbar-nav float-right">
                             <li class="nav-item">
-                                <span class="nav-link text-muted">
-                                    <em class="fa fa-user pr-2"></em> @User.Identity.Name
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-cadastrar-pergunta" asp-controller="Pergunta" asp-action="Cadastrar">
+                                    Fazer uma pergunta
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <span class="nav-link text-danger">
+                                    <i class="bi bi-person-circle"></i> @User.Identity.Name
                                 </span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link px-3 py-0 text-danger" asp-action="Sair" asp-controller="Autenticacao">
+                                <a class="nav-link px-3 py-0 text-danger" asp-controller="Autenticacao" asp-action="Sair">
                                     <i class="bi bi-lg bi-box-arrow-in-right"></i>
                                 </a>
                             </li>
@@ -58,15 +63,16 @@
         </nav>
     </header>
     <div class="container">
-        <partial name="_Notificacao" />
+        <partial name="_Notificacoes" />
         <main role="main" class="pb-3">
             @RenderBody()
+            <partial name="../Pergunta/_Cadastrar.cshtml" model="@ViewBag.PerguntaViewModel" />
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - BacalhauResponde
+            &copy; @DateTime.Now.Year BacalhauResponde - Myllth0m
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

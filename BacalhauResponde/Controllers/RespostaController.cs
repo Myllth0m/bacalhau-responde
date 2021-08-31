@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BacalhauResponde.Controllers
 {
-    public class RespostaController : Controller
+    public class RespostaController : BaseController
     {
         public IActionResult Index()
         {

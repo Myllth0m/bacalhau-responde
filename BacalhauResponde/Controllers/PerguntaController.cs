@@ -1,19 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using BacalhauResponde.Context;
+using BacalhauResponde.Historias.Usuario;
+using BacalhauResponde.Models;
+using BacalhauResponde.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BacalhauResponde.Controllers
 {
-    public class PerguntaController : Controller
+    [Authorize]
+    public class PerguntaController : BaseController
     {
         private readonly BacalhauRespondeContexto contexto;
-        public PerguntaController(BacalhauRespondeContexto contexto)
+        private readonly IServicoDeUsuario servicoDeUsuario;
+        public PerguntaController(
+            BacalhauRespondeContexto contexto,
+            IServicoDeUsuario servicoDeUsuario)
         {
             this.contexto = contexto;
+            this.servicoDeUsuario = servicoDeUsuario;
+        }
+
+        public IActionResult Cadastrar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Cadastrar(PerguntaViewModel perguntaViewModel)
+        {
+            var novaPergunta = new Pergunta(
+                id: perguntaViewModel.Id,
+                usuarioId: servicoDeUsuario.ObterId(),
+                titulo: perguntaViewModel.Titulo,
+                descricao: perguntaViewModel.Descricao,
+                foto: string.Empty
+                );
+
+            await contexto.AddAsync(novaPergunta);
+            await contexto.SaveChangesAsync();
+
+            return View(perguntaViewModel);
         }
 
         public async Task<IActionResult> ListarTodasAsPerguntas()

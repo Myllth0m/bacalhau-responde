@@ -1,7 +1,9 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using BacalhauResponde.Context;
 using BacalhauResponde.Models;
+using BacalhauResponde.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace BacalhauResponde.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly BacalhauRespondeContexto contexto;
         public HomeController(BacalhauRespondeContexto contexto)
@@ -19,11 +21,28 @@ namespace BacalhauResponde.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var perguntas = await contexto.Perguntas
+            var listaDePerguntas = await contexto.Perguntas
                                           .AsNoTracking()
+                                          .Include(x => x.Usuario)
                                           .ToListAsync();
 
-            return View(perguntas);
+            var dashBoardViewModel = new List<DashBoardViewModel>();
+
+            foreach (var pergunta in listaDePerguntas)
+            {
+                dashBoardViewModel.Add(new DashBoardViewModel
+                {
+                    UsuarioDaPergunta = pergunta.Usuario.UserName,
+                    DataDeAtualizacao = pergunta.DataDeAtualizacao,
+                    PerguntaId = pergunta.Id,
+                    Titulo = pergunta.Titulo,
+                    Descricao = pergunta.Descricao,
+                });
+            }
+
+            ViewBag.PerguntaViewModel = new PerguntaViewModel();
+
+            return View(dashBoardViewModel);
         }
 
         public IActionResult Privacy()

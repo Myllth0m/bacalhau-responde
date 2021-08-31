@@ -1,5 +1,6 @@
 using System;
 using BacalhauResponde.Context;
+using BacalhauResponde.Historias.Usuario;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +31,8 @@ namespace BacalhauResponde
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<BacalhauRespondeContexto>()
                     .AddDefaultTokenProviders();
+
+            services.AddScoped<IServicoDeUsuario, ServicoDeUsuario>();
 
             services.ConfigureApplicationCookie(opcoes =>
             {

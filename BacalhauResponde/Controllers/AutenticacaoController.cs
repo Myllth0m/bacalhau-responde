@@ -1,12 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BacalhauResponde.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BacalhauResponde.Controllers
 {
-    public class AutenticacaoController : Controller
+    public class AutenticacaoController : BaseController
     {
         private readonly UserManager<IdentityUser> gerenciadorDeUsuario;
         private readonly SignInManager<IdentityUser> gerenciadorDeAcesso;
