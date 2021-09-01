@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
 
 namespace BacalhauResponde.Models
 {
@@ -15,13 +15,15 @@ namespace BacalhauResponde.Models
             PerguntaId = perguntaId;
             Descricao = descricao;
             Foto = foto;
+            DataDeCriacao = DateTime.Now.ToLongDateString();
+            DataDeAtualizacao = DateTime.Now.ToLongDateString();
         }
 
         public string UsuarioId { get; private set; }
         public long PerguntaId { get; private set; }
         public string Descricao { get; private set; }
         public string Foto { get; private set; }
-        public IdentityUser Usuario { get; private set; }
+        public Usuario Usuario { get; private set; }
         public virtual Pergunta Pergunta { get; private set; }
 
         public void AtualizarDados(
@@ -30,6 +32,7 @@ namespace BacalhauResponde.Models
         {
             Descricao = descricao;
             Foto = foto;
+            DataDeAtualizacao = DateTime.Now.ToLongDateString();
         }
     }
 }

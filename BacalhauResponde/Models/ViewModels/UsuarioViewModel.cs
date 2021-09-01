@@ -19,6 +19,7 @@ namespace BacalhauResponde.Models.ViewModels
         public string Senha { get; set; }
 
         [Display(Name = "Confirme sua senha")]
+        [Required(ErrorMessage = "Informe novamente sua senha")]
         [Compare(nameof(Senha), ErrorMessage = "As senhas não são iguais")]
         [DataType(DataType.Password)]
         public string ConfirmarSenha { get; set; }

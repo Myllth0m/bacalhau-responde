@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BacalhauResponde.Migrations
 {
     [DbContext(typeof(BacalhauRespondeContexto))]
-    [Migration("20210826033142_Inicio")]
-    partial class Inicio
+    [Migration("20210901040231_CriacaoDasTabelas")]
+    partial class CriacaoDasTabelas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -284,9 +284,19 @@ namespace BacalhauResponde.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("BacalhauResponde.Models.Usuario", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("varchar(200)");
+
+                    b.ToTable("Usuarios");
+                });
+
             modelBuilder.Entity("BacalhauResponde.Models.Pergunta", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Usuario")
+                    b.HasOne("BacalhauResponde.Models.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -302,7 +312,7 @@ namespace BacalhauResponde.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Usuario")
+                    b.HasOne("BacalhauResponde.Models.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -360,6 +370,15 @@ namespace BacalhauResponde.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BacalhauResponde.Models.Usuario", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithOne()
+                        .HasForeignKey("BacalhauResponde.Models.Usuario", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
 

@@ -32,7 +32,7 @@ namespace BacalhauResponde.Controllers
             {
                 dashBoardViewModel.Add(new DashBoardViewModel
                 {
-                    UsuarioDaPergunta = pergunta.Usuario.UserName,
+                    UsuarioDaPergunta = pergunta.Usuario.Nome,
                     DataDeAtualizacao = pergunta.DataDeAtualizacao,
                     PerguntaId = pergunta.Id,
                     Titulo = pergunta.Titulo,

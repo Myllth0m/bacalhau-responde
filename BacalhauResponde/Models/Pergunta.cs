@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
 
 namespace BacalhauResponde.Models
 {
@@ -19,15 +18,15 @@ namespace BacalhauResponde.Models
             Titulo = titulo;
             Descricao = descricao;
             Foto = foto;
-            DataDeCriacao = DateTime.Now.ToShortDateString();
-            DataDeAtualizacao = DateTime.Now.ToShortDateString();
+            DataDeCriacao = DateTime.Now.ToLongDateString();
+            DataDeAtualizacao = DateTime.Now.ToLongDateString();
         }
 
         public string UsuarioId { get; private set; }
         public string Descricao { get; private set; }
         public string Foto { get; private set; }
         public string Titulo { get; private set; }
-        public IdentityUser Usuario { get; private set; }
+        public Usuario Usuario { get; private set; }
         public virtual ICollection<Resposta> Respostas { get; private set; }
 
         public void AtualizarDados(
@@ -38,7 +37,7 @@ namespace BacalhauResponde.Models
             Titulo = titulo;
             Descricao = descricao;
             Foto = foto;
-            DataDeAtualizacao = DateTime.Now.ToShortDateString();
+            DataDeAtualizacao = DateTime.Now.ToLongDateString();
         }
     }
 }

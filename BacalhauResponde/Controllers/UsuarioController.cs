@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using BacalhauResponde.Models;
 using BacalhauResponde.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,8 +9,8 @@ namespace BacalhauResponde.Controllers
 {
     public class UsuarioController : BaseController
     {
-        private readonly UserManager<IdentityUser> gerenciadorDeUsuario;
-        public UsuarioController(UserManager<IdentityUser> gerenciadorDeUsuario)
+        private readonly UserManager<Usuario> gerenciadorDeUsuario;
+        public UsuarioController(UserManager<Usuario> gerenciadorDeUsuario)
         {
             this.gerenciadorDeUsuario = gerenciadorDeUsuario;
         }
@@ -24,11 +25,10 @@ namespace BacalhauResponde.Controllers
         {
             if (ModelState.IsValid)
             {
-                var novoUsuario = new IdentityUser
-                {
-                    UserName = usuarioViewModel.Nome.ToLower(),
-                    Email = usuarioViewModel.Email.ToLower()
-                };
+                var novoUsuario = new Usuario(
+                    nome: usuarioViewModel.Nome,
+                    email: usuarioViewModel.Email.ToLower()
+                );
 
                 var resultadoDaCriacaoDeUsuario = await gerenciadorDeUsuario.CreateAsync(novoUsuario, usuarioViewModel.Senha);
 

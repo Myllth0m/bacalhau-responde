@@ -1,11 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BacalhauResponde.Context;
-using BacalhauResponde.Historias.Usuario;
 using BacalhauResponde.Models;
 using BacalhauResponde.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,35 +15,30 @@ namespace BacalhauResponde.Controllers
     public class PerguntaController : BaseController
     {
         private readonly BacalhauRespondeContexto contexto;
-        private readonly IServicoDeUsuario servicoDeUsuario;
-        public PerguntaController(
-            BacalhauRespondeContexto contexto,
-            IServicoDeUsuario servicoDeUsuario)
-        {
-            this.contexto = contexto;
-            this.servicoDeUsuario = servicoDeUsuario;
-        }
-
-        public IActionResult Cadastrar()
-        {
-            return View();
-        }
+        public PerguntaController(BacalhauRespondeContexto contexto) => this.contexto = contexto;
 
         [HttpPost]
         public async Task<IActionResult> Cadastrar(PerguntaViewModel perguntaViewModel)
         {
-            var novaPergunta = new Pergunta(
-                id: perguntaViewModel.Id,
-                usuarioId: servicoDeUsuario.ObterId(),
-                titulo: perguntaViewModel.Titulo,
-                descricao: perguntaViewModel.Descricao,
-                foto: string.Empty
-                );
+            if (ModelState.IsValid)
+            {
+                var novaPergunta = new Pergunta(
+                    id: perguntaViewModel.Id,
+                    usuarioId: User.FindFirstValue(ClaimTypes.NameIdentifier),
+                    titulo: perguntaViewModel.Titulo,
+                    descricao: perguntaViewModel.Descricao,
+                    foto: string.Empty
+                    );
 
-            await contexto.AddAsync(novaPergunta);
-            await contexto.SaveChangesAsync();
+                await contexto.AddAsync(novaPergunta);
+                await contexto.SaveChangesAsync();
 
-            return View(perguntaViewModel);
+                NotificarSucesso("Sua pergunta foi adicionada com sucesso!");
+            }
+            else
+                NotificarErros(new List<string>() { "Não foi possível adicionar sua pergunta!" });
+
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> ListarTodasAsPerguntas()

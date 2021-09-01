@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BacalhauResponde.Migrations
 {
-    public partial class Inicio : Migration
+    public partial class CriacaoDasTabelas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -169,6 +169,26 @@ namespace BacalhauResponde.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Usuarios",
+                schema: "BacalhauResponde",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(200)", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(200)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Usuarios_AspNetUsers_Id",
+                        column: x => x.Id,
+                        principalSchema: "BacalhauResponde",
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Perguntas",
                 schema: "BacalhauResponde",
                 columns: table => new
@@ -186,10 +206,10 @@ namespace BacalhauResponde.Migrations
                 {
                     table.PrimaryKey("PK_Perguntas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Perguntas_AspNetUsers_UsuarioId",
+                        name: "FK_Perguntas_Usuarios_UsuarioId",
                         column: x => x.UsuarioId,
                         principalSchema: "BacalhauResponde",
-                        principalTable: "AspNetUsers",
+                        principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -212,17 +232,17 @@ namespace BacalhauResponde.Migrations
                 {
                     table.PrimaryKey("PK_Respostas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Respostas_AspNetUsers_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalSchema: "BacalhauResponde",
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Respostas_Perguntas_PerguntaId",
                         column: x => x.PerguntaId,
                         principalSchema: "BacalhauResponde",
                         principalTable: "Perguntas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Respostas_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalSchema: "BacalhauResponde",
+                        principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -324,6 +344,10 @@ namespace BacalhauResponde.Migrations
 
             migrationBuilder.DropTable(
                 name: "Perguntas",
+                schema: "BacalhauResponde");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios",
                 schema: "BacalhauResponde");
 
             migrationBuilder.DropTable(

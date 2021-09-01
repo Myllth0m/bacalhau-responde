@@ -22,6 +22,7 @@ namespace BacalhauResponde.Context
 
         private string UserId => gerenciadorDeAcesso.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Pergunta> Perguntas { get; set; }
         public DbSet<Resposta> Respostas { get; set; }
 
@@ -34,6 +35,9 @@ namespace BacalhauResponde.Context
                 propriedade.SetColumnType("varchar(200)");
 
             builder.HasDefaultSchema("BacalhauResponde");
+
+            builder.Entity<Usuario>()
+                   .ToTable("Usuarios");
 
             builder.Entity<Pergunta>()
                    .HasQueryFilter(x => x.UsuarioId == UserId)

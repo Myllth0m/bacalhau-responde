@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using BacalhauResponde.Models;
 using BacalhauResponde.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,11 +8,11 @@ namespace BacalhauResponde.Controllers
 {
     public class AutenticacaoController : BaseController
     {
-        private readonly UserManager<IdentityUser> gerenciadorDeUsuario;
-        private readonly SignInManager<IdentityUser> gerenciadorDeAcesso;
+        private readonly UserManager<Usuario> gerenciadorDeUsuario;
+        private readonly SignInManager<Usuario> gerenciadorDeAcesso;
         public AutenticacaoController(
-            UserManager<IdentityUser> gerenciadorDeUsuario,
-            SignInManager<IdentityUser> gerenciadorDeAcesso)
+            UserManager<Usuario> gerenciadorDeUsuario,
+            SignInManager<Usuario> gerenciadorDeAcesso)
         {
             this.gerenciadorDeUsuario = gerenciadorDeUsuario;
             this.gerenciadorDeAcesso = gerenciadorDeAcesso;
@@ -42,7 +43,7 @@ namespace BacalhauResponde.Controllers
         {
             await gerenciadorDeAcesso.SignOutAsync();
 
-            return RedirectToAction(nameof(Entrar));
+            return RedirectToAction("Entrar");
         }
 
         public IActionResult RecuperarSenha()

@@ -4,14 +4,15 @@ namespace BacalhauResponde.Models
 {
     public class Usuario : IdentityUser
     {
+        protected Usuario() { }
         public Usuario(
             string nome,
-            string email)
+            string email) : base(userName: nome.Replace(" ", string.Empty))
         {
-            Name = nome;
+            Nome = nome;
             Email = email;
         }
 
-        public string Name { get; private set; }
+        public string Nome { get; private set; }
     }
 }
