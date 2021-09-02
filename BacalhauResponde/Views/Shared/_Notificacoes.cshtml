@@ -2,7 +2,7 @@
 
 @if (TempData["sucesso"] != null)
 {
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fw-bold fade show" role="alert">
         <i class="bi bi-check-circle-fill"></i>
         @TempData["sucesso"]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -14,7 +14,7 @@
     var erros = JsonSerializer.Deserialize<List<string>>(TempData["erros"].ToString());
     foreach (var erro in erros)
     {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger alert-dismissible fw-bold fade show" role="alert">
             <i class="bi bi-exclamation-octagon-fill"></i>
             @erro
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -24,7 +24,7 @@
 
 @if (TempData["atencao"] != null)
 {
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fw-bold fade show" role="alert">
         <i class="bi bi-exclamation-triangle-fill"></i>
         @TempData["atencao"]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -33,7 +33,7 @@
 
 @if (TempData["informacao"] != null)
 {
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <div class="alert alert-primary alert-dismissible fw-bold fade show" role="alert">
         <i class="bi bi-info-circle-fill"></i>
         @TempData["informacao"]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

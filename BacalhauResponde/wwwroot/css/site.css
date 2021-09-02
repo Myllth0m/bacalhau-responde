@@ -61,6 +61,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color: var(--bs-light);
 }
 .footer {
   position: absolute;
@@ -71,11 +72,17 @@ body {
 }
 
 .bi-sm {
-    font-size: 1em;
+    font-size: 1rem;
 }
 .bi-md {
-    font-size: 1.375em;
+    font-size: 1.375rem;
 }
 .bi-lg {
-    font-size: 1.75em;
+    font-size: 1.75rem;
+}
+.bi-xl {
+    font-size: 2rem;
+}
+.bi-xxl {
+    font-size: 2.5rem;
 }

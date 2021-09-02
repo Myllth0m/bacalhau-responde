@@ -2,7 +2,6 @@
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>@ViewData["Title"] - Bacalhau Responde</title>
@@ -40,19 +39,19 @@
                     </ul>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <ul class="navbar-nav float-right">
+                        <ul class="navbar-nav float-right align-items-center">
                             <li class="nav-item">
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-cadastrar-pergunta" asp-controller="Pergunta" asp-action="Cadastrar">
                                     Fazer uma pergunta
                                 </button>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item px-3">
                                 <span class="nav-link text-danger">
                                     <i class="bi bi-person-circle"></i> @User.Identity.Name
                                 </span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link px-3 py-0 text-danger" asp-controller="Autenticacao" asp-action="Sair">
+                                <a class="nav-link text-danger p-0" asp-controller="Autenticacao" asp-action="Sair">
                                     <i class="bi bi-lg bi-box-arrow-in-right"></i>
                                 </a>
                             </li>
