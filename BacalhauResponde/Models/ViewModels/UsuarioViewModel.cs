@@ -4,14 +4,17 @@ namespace BacalhauResponde.Models.ViewModels
 {
     public class UsuarioViewModel
     {
-        [Display(Name = "Nome")]
+        [Display(Name = "Nome completo")]
         [Required(ErrorMessage = "Informe seu nome")]
         public string Nome { get; set; }
 
         [Display(Name = "E-mail")]
         [Required(ErrorMessage = "Informe seu e-mail")]
-        [EmailAddress(ErrorMessage = "E-mail inválido")]
         public string Email { get; set; }
+
+        [Display(Name = "Cargo/Função")]
+        [Required(ErrorMessage = "Informe seu e-mail")]
+        public string Ocupacao { get; set; }
 
         [Required(ErrorMessage = "Informe sua senha")]
         [MinLength(6, ErrorMessage = "Senha inválida")]

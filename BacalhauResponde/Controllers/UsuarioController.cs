@@ -27,7 +27,8 @@ namespace BacalhauResponde.Controllers
             {
                 var novoUsuario = new Usuario(
                     nome: usuarioViewModel.Nome,
-                    email: usuarioViewModel.Email.ToLower()
+                    email: usuarioViewModel.Email.ToLower(),
+                    ocupacao: usuarioViewModel.Ocupacao
                 );
 
                 var resultadoDaCriacaoDeUsuario = await gerenciadorDeUsuario.CreateAsync(novoUsuario, usuarioViewModel.Senha);
