@@ -10,12 +10,12 @@
             <h3 class="card-title text-center pt-4 pb-2">Bacalhau Responde</h3>
             <p class="card-subtitle fst-italic text-center pb-4">Um lugar para aprender mais sobre o mundo da tecnologia</p>
             <form asp-action="Entrar">
-                <div class="pb-2">
+                <div class="pb-3">
                     <label asp-for="Email" class="control-label fw-bold"></label>
                     <input asp-for="Email" class="form-control" placeholder="O seu e-mail" autofocus />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-                <div class="pb-2">
+                <div class="pb-3">
                     <label asp-for="Senha" class="control-label fw-bold"></label>
                     <input asp-for="Senha" class="form-control" placeholder="O sua senha" />
                     <span asp-validation-for="Senha" class="text-danger"></span>
@@ -24,11 +24,16 @@
                     <a class="nav-link align-self-center text-black-50 p-0" asp-action="RecuperarSenha">
                         Esqueceu sua senha?
                     </a>
-                    <button type="submit" class="btn btn-sm btn-primary">
+                    <button type="submit" class="btn btn-sm btn-primary rounded-pill">
                         Fazer login
                     </button>
                 </div>
             </form>
+            <div class="form-text mt-3">
+                <a class="nav-link btn btn-light" asp-action="Cadastrar" asp-controller="Usuario">
+                    Você pode criar uma conta clicando aqui
+                </a>
+            </div>
         </div>
     </div>
 </div>
