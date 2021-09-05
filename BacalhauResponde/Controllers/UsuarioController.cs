@@ -35,12 +35,12 @@ namespace BacalhauResponde.Controllers
 
                 if (resultadoDaCriacaoDeUsuario.Succeeded)
                 {
-                    NotificarSucesso();
+                    NotificarSucesso("usuario criado com sucesso!");
                     return RedirectToAction("Entrar", "Autenticacao");
                 }
             }
 
-            NotificarErros(new List<string>() { "Não foi possível cadastrar um novo usuário" });
+            NotificarErro("Não foi possível cadastrar um novo usuário!");
             return View(usuarioViewModel);
         }
     }

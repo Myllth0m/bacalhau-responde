@@ -9,17 +9,13 @@
     </div>
 }
 
-@if (TempData["erros"] != null)
+@if (TempData["erro"] != null)
 {
-    var erros = JsonSerializer.Deserialize<List<string>>(TempData["erros"].ToString());
-    foreach (var erro in erros)
-    {
-        <div class="alert alert-danger alert-dismissible fw-bold fade show" role="alert">
-            <i class="bi bi-exclamation-octagon-fill"></i>
-            @erro
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
+    <div class="alert alert-danger alert-dismissible fw-bold fade show" role="alert">
+        <i class="bi bi-exclamation-octagon-fill"></i>
+        @TempData["erro"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 }
 
 @if (TempData["atencao"] != null)

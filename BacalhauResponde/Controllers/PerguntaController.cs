@@ -36,7 +36,7 @@ namespace BacalhauResponde.Controllers
                 NotificarSucesso("Sua pergunta foi adicionada com sucesso!");
             }
             else
-                NotificarErros(new List<string>() { "Não foi possível adicionar sua pergunta!" });
+                NotificarErro("Não foi possível adicionar sua pergunta!");
 
             return RedirectToAction("Index", "Home");
         }

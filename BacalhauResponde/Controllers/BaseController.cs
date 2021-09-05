@@ -19,14 +19,14 @@ namespace BacalhauResponde.Controllers
             return TempData["sucesso"];
         }
 
-        public object NotificarErros(IEnumerable<string> erros)
+        public object NotificarErro(string mensagem = "")
         {
-            if (erros.Any())
-                TempData["erros"] = JsonSerializer.Serialize(erros);
+            if (string.IsNullOrEmpty(mensagem))
+                TempData["erro"] = "Algo deu errado! Tente novamente. Se o problema persistir, contate a administração";
             else
-                TempData["erros"] = "Algo deu errado! Tente novamente. Se o problema persistir, contate a administração";
+                TempData["erro"] = mensagem;
 
-            return TempData["erros"];
+            return TempData["erro"];
         }
 
         public object NotificarAtencao(string mensagem = "")
@@ -41,23 +41,6 @@ namespace BacalhauResponde.Controllers
             TempData["informacao"] = mensagem;
 
             return TempData["informacao"];
-        }
-
-        public void NotificarErrosDaModelState()
-        {
-            var erros = new List<string>();
-
-            ModelState.Values.ToList().ForEach(x => x.Errors.ToList().ForEach(x => erros.Add(x.ErrorMessage)));
-
-            NotificarErros(erros);
-        }
-
-        public void Notificar(Dictionary<string, string> erros)
-        {
-            if (!erros.Any())
-                NotificarSucesso();
-            else
-                NotificarErros(erros.Values);
         }
     }
 }
