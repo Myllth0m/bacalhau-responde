@@ -1,0 +1,25 @@
+﻿@model BacalhauResponde.Models.ViewModels.PerguntaComRespostasViewModel
+@{
+    ViewData["Title"] = "Pergunta completa";
+}
+
+<div class="d-flex flex-column">
+    <div class="card shadow-sm w-auto mb-2">
+        <div class="card-body">
+            <span class="ps-1 fst-italic text-black-50">@(Model.DataDeCricaoDaPergunta)</span>
+            <div class="d-flex align-items-center mb-2">
+                <i class="bi bi-xxl bi-person-circle"></i>
+                <div class="ps-2">
+                    <h5 class="card-title">@(Model.UsuarioDaPergunta)</h5>
+                    <h6 class="card-subtitle text-muted">@(Model.OcupacaoDoUsuario)</h6>
+                </div>
+            </div>
+            <h4>@(Model.Titulo)</h4>
+            <p>@(Model.Descricao)</p>
+            <div class="form-floating">
+                <input class="form-control" id="campo-de-resposta" />
+                <label for="campo-de-resposta">Deixe sua resposta...</label>
+            </div>
+        </div>
+    </div>
+</div>

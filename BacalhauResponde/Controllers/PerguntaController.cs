@@ -18,7 +18,7 @@ namespace BacalhauResponde.Controllers
         public PerguntaController(BacalhauRespondeContexto contexto) => this.contexto = contexto;
 
         [HttpPost]
-        public async Task<IActionResult> Cadastrar(PerguntaViewModel perguntaViewModel)
+        public async Task<IActionResult> Cadastrar(CriarPerguntaViewModel perguntaViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -41,6 +41,42 @@ namespace BacalhauResponde.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public async Task<IActionResult> BuscarPerguntaComRespostas(long perguntaId)
+        {
+            var perguntaComListDeRespostas = await contexto.Perguntas.AsNoTracking()
+                                                               .Include(p => p.Usuario)
+                                                               .Include(p => p.Respostas)
+                                                               .FirstOrDefaultAsync(p => p.Id.Equals(perguntaId));
+
+            var listaDeRespostasDaPergunta = new List<RespostaViewModel>();
+
+            foreach (var resposta in perguntaComListDeRespostas.Respostas)
+            {
+                listaDeRespostasDaPergunta.Add(new RespostaViewModel
+                {
+                    DataDeCricaoDaResposta = resposta.DataDeCriacao,
+                    UsuarioDaResposta = resposta.Usuario.Nome,
+                    OcupacaoDoUsuario = resposta.Usuario.Ocupacao,
+                    RespostaId = resposta.Id,
+                    Descricao = resposta.Descricao
+                });
+            }
+
+            var perguntaComRespostas = new PerguntaComRespostasViewModel
+            {
+                UsuarioDaPergunta = perguntaComListDeRespostas.Usuario.Nome,
+                OcupacaoDoUsuario = perguntaComListDeRespostas.Usuario.Ocupacao,
+                DataDeCricaoDaPergunta = perguntaComListDeRespostas.DataDeCriacao,
+                PerguntaId = perguntaComListDeRespostas.Id,
+                Titulo = perguntaComListDeRespostas.Titulo,
+                Descricao = perguntaComListDeRespostas.Descricao,
+
+                Respostas = listaDeRespostasDaPergunta
+            };
+
+            return View("PerguntaComRespostas", perguntaComRespostas);
+        }
+
         public async Task<IActionResult> ListarTodasAsPerguntas()
         {
             var listaDePerguntas = await contexto.Perguntas.AsNoTracking()
@@ -56,15 +92,6 @@ namespace BacalhauResponde.Controllers
                                                                     .ToListAsync();
 
             return View(listaDePerguntasPorTitulo);
-        }
-
-        public async Task<IActionResult> BuscarPerguntaComRespostas(long id)
-        {
-            var perguntaComRespostas = await contexto.Perguntas.AsNoTracking()
-                                                               .Include(p => p.Respostas)
-                                                               .FirstOrDefaultAsync(p => p.Id.Equals(id));
-
-            return View(perguntaComRespostas);
         }
 
         public async Task<IActionResult> AtualizarPergunta(long id)

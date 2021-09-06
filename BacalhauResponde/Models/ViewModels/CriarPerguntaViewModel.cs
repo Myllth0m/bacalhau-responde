@@ -2,7 +2,7 @@
 
 namespace BacalhauResponde.Models.ViewModels
 {
-    public class PerguntaViewModel
+    public class CriarPerguntaViewModel
     {
         public long Id { get; set; }
         

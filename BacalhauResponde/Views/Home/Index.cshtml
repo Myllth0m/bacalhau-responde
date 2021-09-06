@@ -18,6 +18,11 @@
                 </div>
                 <h4>@(item.Titulo)</h4>
                 <p>@(item.Descricao)</p>
+                <div class="d-flex mt-2">
+                    <a class="nav-link" asp-action="BuscarPerguntaComRespostas" asp-controller="Pergunta" asp-route-perguntaId="@(item.PerguntaId)">
+                        <i class="bi bi-md bi-chat"></i>
+                    </a>
+                </div>
             </div>
         </div>
     }

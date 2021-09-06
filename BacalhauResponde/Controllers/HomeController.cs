@@ -14,10 +14,7 @@ namespace BacalhauResponde.Controllers
     public class HomeController : BaseController
     {
         private readonly BacalhauRespondeContexto contexto;
-        public HomeController(BacalhauRespondeContexto contexto)
-        {
-            this.contexto = contexto;
-        }
+        public HomeController(BacalhauRespondeContexto contexto) => this.contexto = contexto;
 
         public async Task<IActionResult> Index()
         {
@@ -32,16 +29,16 @@ namespace BacalhauResponde.Controllers
             {
                 dashBoardViewModel.Add(new DashBoardViewModel
                 {
+                    DataDeCricaoDaPergunta = pergunta.DataDeCriacao,
                     UsuarioDaPergunta = pergunta.Usuario.Nome,
                     OcupacaoDoUsuario = pergunta.Usuario.Ocupacao,
-                    DataDeCricaoDaPergunta = pergunta.DataDeCriacao,
                     PerguntaId = pergunta.Id,
                     Titulo = pergunta.Titulo,
-                    Descricao = pergunta.Descricao,
+                    Descricao = pergunta.Descricao
                 });
             }
 
-            ViewBag.PerguntaViewModel = new PerguntaViewModel();
+            ViewBag.PerguntaViewModel = new CriarPerguntaViewModel();
 
             return View(dashBoardViewModel);
         }
