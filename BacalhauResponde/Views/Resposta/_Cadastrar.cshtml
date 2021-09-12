@@ -1,0 +1,15 @@
+﻿@model BacalhauResponde.Models.ViewModels.CriarRespostaViewModel
+
+<form asp-controller="Resposta" asp-action="AdicionarResposta" method="post" class="d-flex align-items-center">
+    <input asp-for="PerguntaId" type="hidden" value="@(Model.PerguntaId)" />
+    <textarea asp-for="Descricao" class="form-control rounded-5" id="campo-de-resposta" placeholder="Deixe sua resposta..." rows="1"></textarea>
+    <button class="btn btn-danger rounded-pill ms-2">Responder</button>
+</form>
+
+<script>
+    const textarea = document.getElementById("campo-de-resposta")
+    textarea.addEventListener("keyup", event => {
+        textarea.style.height = "auto"
+        textarea.style.height = `${event.target.scrollHeight}px`
+    })
+</script>

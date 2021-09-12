@@ -26,7 +26,8 @@ namespace BacalhauResponde.Models
         public string Descricao { get; private set; }
         public string Foto { get; private set; }
         public string Titulo { get; private set; }
-        public Usuario Usuario { get; private set; }
+
+        public virtual Usuario Usuario { get; private set; }
         public virtual ICollection<Resposta> Respostas { get; private set; }
 
         public void AtualizarDados(

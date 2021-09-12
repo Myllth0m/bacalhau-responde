@@ -72,17 +72,28 @@ body {
 }
 
 .bi-sm {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 .bi-md {
-    font-size: 1.375rem;
+  font-size: 1.375rem;
 }
 .bi-lg {
-    font-size: 1.75rem;
+  font-size: 1.75rem;
 }
 .bi-xl {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 .bi-xxl {
-    font-size: 2.5rem;
+  font-size: 2.5rem;
+}
+.rounded-5 {
+  border-radius: .5rem!important;
+}
+
+textarea {
+  resize: none;
+  overflow: hidden;
+}
+textarea::-webkit-scrollbar {
+  width: 0;
 }

@@ -46,6 +46,7 @@ namespace BacalhauResponde.Controllers
             var perguntaComListDeRespostas = await contexto.Perguntas.AsNoTracking()
                                                                .Include(p => p.Usuario)
                                                                .Include(p => p.Respostas)
+                                                                   .ThenInclude(p => p.Usuario)
                                                                .FirstOrDefaultAsync(p => p.Id.Equals(perguntaId));
 
             var listaDeRespostasDaPergunta = new List<RespostaViewModel>();
@@ -73,6 +74,8 @@ namespace BacalhauResponde.Controllers
 
                 Respostas = listaDeRespostasDaPergunta
             };
+
+            ViewBag.RespostaViewModel = new CriarRespostaViewModel() { PerguntaId = perguntaId };
 
             return View("PerguntaComRespostas", perguntaComRespostas);
         }

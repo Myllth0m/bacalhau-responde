@@ -11,7 +11,7 @@ namespace BacalhauResponde.Models.ViewModels
         public string Titulo { get; set; }
 
         [Display(Name = "Descreva com claresa qual é a sua dúvida")]
-        [Required(ErrorMessage = "Informe o título da pergunta")]
+        [Required(ErrorMessage = "Informe a descrição da pergunta")]
         public string Descricao { get; set; }
         
         public string Foto { get; set; }

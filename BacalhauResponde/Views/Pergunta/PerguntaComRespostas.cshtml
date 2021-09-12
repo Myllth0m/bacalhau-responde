@@ -14,12 +14,30 @@
                     <h6 class="card-subtitle text-muted">@(Model.OcupacaoDoUsuario)</h6>
                 </div>
             </div>
-            <h4>@(Model.Titulo)</h4>
-            <p>@(Model.Descricao)</p>
-            <div class="form-floating">
-                <input class="form-control" id="campo-de-resposta" />
-                <label for="campo-de-resposta">Deixe sua resposta...</label>
+            <div class="mt-3 mb-5">
+                <h4>@(Model.Titulo)</h4>
+                <p>@(Model.Descricao)</p>
             </div>
+
+            <h3>@(Model.NumeroDeRespostas)</h3>
+            @if (Model.Respostas.Any())
+            {
+                foreach (var resposta in Model.Respostas)
+                {
+                    <hr />
+                    <span class="ps-1 fst-italic text-black-50">@(resposta.DataDeCricaoDaResposta)</span>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-xxl bi-person-circle"></i>
+                        <div class="ps-2">
+                            <h5 class="card-title">@(resposta.UsuarioDaResposta)</h5>
+                            <h6 class="card-subtitle text-muted">@(resposta.OcupacaoDoUsuario)</h6>
+                        </div>
+                    </div>
+                    <p>@(resposta.Descricao)</p>
+                }
+            }
+            <hr />
+            <partial name="../Resposta/_Cadastrar.cshtml" model="@ViewBag.RespostaViewModel" />
         </div>
     </div>
 </div>
