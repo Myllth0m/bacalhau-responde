@@ -8,18 +8,16 @@
         <div class="card-body">
             <span class="ps-1 fst-italic text-black-50">@(Model.DataDeCricaoDaPergunta)</span>
             <div class="d-flex align-items-center mb-2">
-                <i class="bi bi-xxl bi-person-circle"></i>
-                <div class="ps-2">
-                    <h5 class="card-title">@(Model.UsuarioDaPergunta)</h5>
-                    <h6 class="card-subtitle text-muted">@(Model.OcupacaoDoUsuario)</h6>
-                </div>
+                <i class="bi bi-md bi-person-circle"></i>
+                <h5 class="card-title fw-bold fs-6 ms-2 my-0">@(Model.UsuarioDaPergunta)</h5>
+                <h6 class="card-subtitle fs-6 text-muted ms-1 my-0">- @(Model.OcupacaoDoUsuario)</h6>
             </div>
             <div class="mt-3 mb-5">
-                <h4>@(Model.Titulo)</h4>
-                <p>@(Model.Descricao)</p>
+                <h4 class="h4 fw-bold">@(Model.Titulo)</h4>
+                <p class="fs-5">@(Model.Descricao)</p>
             </div>
 
-            <h3>@(Model.NumeroDeRespostas)</h3>
+            <h5 class="h5">@(Model.NumeroDeRespostas)</h5>
             @if (Model.Respostas.Any())
             {
                 foreach (var resposta in Model.Respostas)
@@ -27,13 +25,11 @@
                     <hr />
                     <span class="ps-1 fst-italic text-black-50">@(resposta.DataDeCricaoDaResposta)</span>
                     <div class="d-flex align-items-center mb-2">
-                        <i class="bi bi-xxl bi-person-circle"></i>
-                        <div class="ps-2">
-                            <h5 class="card-title">@(resposta.UsuarioDaResposta)</h5>
-                            <h6 class="card-subtitle text-muted">@(resposta.OcupacaoDoUsuario)</h6>
-                        </div>
+                        <i class="bi bi-md bi-person-circle"></i>
+                        <h5 class="card-title fw-bold fs-6 ms-2 my-0">@(resposta.UsuarioDaResposta)</h5>
+                        <h6 class="card-subtitle text-muted fs-6 ms-1 my-0">- @(resposta.OcupacaoDoUsuario)</h6>
                     </div>
-                    <p>@(resposta.Descricao)</p>
+                    <p class="fs-5">@(resposta.Descricao)</p>
                 }
             }
             <hr />
