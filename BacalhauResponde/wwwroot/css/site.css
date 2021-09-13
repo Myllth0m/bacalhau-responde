@@ -35,6 +35,10 @@ html {
   }
 }
 
+::-webkit-scrollbar {
+    width: 0;
+}
+
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
