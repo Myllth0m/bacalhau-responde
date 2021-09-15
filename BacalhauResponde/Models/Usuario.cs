@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BacalhauResponde.Extentions;
+using Microsoft.AspNetCore.Identity;
 
 namespace BacalhauResponde.Models
 {
@@ -8,7 +9,7 @@ namespace BacalhauResponde.Models
         public Usuario(
             string nome,
             string email,
-            string ocupacao) : base(userName: nome.Replace(" ", string.Empty).ToLower())
+            string ocupacao) : base(userName: nome.BuscarPrimeiroNome())
         {
             Nome = nome;
             Email = email;

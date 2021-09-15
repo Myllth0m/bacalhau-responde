@@ -44,7 +44,7 @@ namespace BacalhauResponde
 
             services.Configure<IdentityOptions>(opcoes =>
             {
-                opcoes.Password.RequireDigit = true;
+                opcoes.Password.RequireDigit = false;
                 opcoes.Password.RequireLowercase = false;
                 opcoes.Password.RequireNonAlphanumeric = false;
                 opcoes.Password.RequireUppercase = false;

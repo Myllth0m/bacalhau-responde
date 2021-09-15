@@ -8,6 +8,7 @@
     <div class="card mt-4" style="width: 25rem">
         <div class="card-body">
             <h3 class="card-title text-center py-4">Criar cadastro</h3>
+            <partial name="_Notificacoes" />
             <form asp-action="Cadastrar">
                 <div class="form-floating mb-3">
                     <input asp-for="Nome" class="form-control" placeholder="Seu nome completo" autocomplete="off" autofocus />
