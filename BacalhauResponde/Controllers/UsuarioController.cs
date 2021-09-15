@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BacalhauResponde.Models;
 using BacalhauResponde.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -10,10 +9,7 @@ namespace BacalhauResponde.Controllers
     public class UsuarioController : BaseController
     {
         private readonly UserManager<Usuario> gerenciadorDeUsuario;
-        public UsuarioController(UserManager<Usuario> gerenciadorDeUsuario)
-        {
-            this.gerenciadorDeUsuario = gerenciadorDeUsuario;
-        }
+        public UsuarioController(UserManager<Usuario> gerenciadorDeUsuario) => this.gerenciadorDeUsuario = gerenciadorDeUsuario;
 
         public IActionResult Cadastrar()
         {
@@ -28,19 +24,20 @@ namespace BacalhauResponde.Controllers
                 var novoUsuario = new Usuario(
                     nome: usuarioViewModel.Nome,
                     email: usuarioViewModel.Email.ToLower(),
-                    ocupacao: usuarioViewModel.Ocupacao
-                );
+                    ocupacao: usuarioViewModel.Ocupacao);
 
                 var resultadoDaCriacaoDeUsuario = await gerenciadorDeUsuario.CreateAsync(novoUsuario, usuarioViewModel.Senha);
 
                 if (resultadoDaCriacaoDeUsuario.Succeeded)
                 {
-                    NotificarSucesso("usuario criado com sucesso!");
+                    NotificarSucesso("cadastro criado com sucesso");
+                    
                     return RedirectToAction("Entrar", "Autenticacao");
                 }
             }
 
-            NotificarErro("Não foi possível cadastrar um novo usuário!");
+            NotificarErro("Não foi possível concluir seu cadastro!");
+            
             return View(usuarioViewModel);
         }
     }

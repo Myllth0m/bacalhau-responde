@@ -27,8 +27,7 @@ namespace BacalhauResponde.Controllers
                     usuarioId: User.FindFirstValue(ClaimTypes.NameIdentifier),
                     titulo: perguntaViewModel.Titulo,
                     descricao: perguntaViewModel.Descricao,
-                    foto: string.Empty
-                    );
+                    foto: string.Empty);
 
                 await contexto.AddAsync(novaPergunta);
                 await contexto.SaveChangesAsync();
@@ -43,11 +42,12 @@ namespace BacalhauResponde.Controllers
 
         public async Task<IActionResult> BuscarPerguntaComRespostas(long perguntaId)
         {
-            var perguntaComListDeRespostas = await contexto.Perguntas.AsNoTracking()
-                                                               .Include(p => p.Usuario)
-                                                               .Include(p => p.Respostas)
-                                                                   .ThenInclude(p => p.Usuario)
-                                                               .FirstOrDefaultAsync(p => p.Id.Equals(perguntaId));
+            var perguntaComListDeRespostas = await contexto.Perguntas
+                .AsNoTracking()
+                .Include(p => p.Usuario)
+                .Include(p => p.Respostas)
+                    .ThenInclude(p => p.Usuario)
+                .FirstOrDefaultAsync(p => p.Id.Equals(perguntaId));
 
             var listaDeRespostasDaPergunta = new List<RespostaViewModel>();
 
@@ -82,24 +82,28 @@ namespace BacalhauResponde.Controllers
 
         public async Task<IActionResult> ListarTodasAsPerguntas()
         {
-            var listaDePerguntas = await contexto.Perguntas.AsNoTracking()
-                                                           .ToListAsync();
+            var listaDePerguntas = await contexto.Perguntas
+                .AsNoTracking()
+                .ToListAsync();
 
             return View(listaDePerguntas);
         }
 
         public async Task<IActionResult> ListarPerguntasPorTitulo(string titulo)
         {
-            var listaDePerguntasPorTitulo = await contexto.Perguntas.AsNoTracking()
-                                                                    .Where(p => p.Titulo.ToLower().Contains(titulo.ToLower()))
-                                                                    .ToListAsync();
+            var listaDePerguntasPorTitulo = await contexto.Perguntas
+                .AsNoTracking()
+                .Where(p => p.Titulo.ToLower().Contains(titulo.ToLower()))
+                .ToListAsync();
 
             return View(listaDePerguntasPorTitulo);
         }
 
         public async Task<IActionResult> AtualizarPergunta(long id)
         {
-            var pergunta = await contexto.Perguntas.FirstOrDefaultAsync(p => p.Id.Equals(id));
+            var pergunta = await contexto.Perguntas
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id.Equals(id));
 
             return View(pergunta);
         }

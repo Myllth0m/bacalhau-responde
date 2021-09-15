@@ -21,8 +21,7 @@ namespace BacalhauResponde.Controllers
                     perguntaId: respostaViewModel.PerguntaId,
                     usuarioId: User.FindFirstValue(ClaimTypes.NameIdentifier),
                     descricao: respostaViewModel.Descricao,
-                    foto: string.Empty
-                    );
+                    foto: string.Empty);
 
                 await contexto.AddAsync(novaResposta);
                 await contexto.SaveChangesAsync();

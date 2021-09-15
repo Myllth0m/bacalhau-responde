@@ -19,9 +19,9 @@ namespace BacalhauResponde.Controllers
         public async Task<IActionResult> Index()
         {
             var listaDePerguntas = await contexto.Perguntas
-                                          .AsNoTracking()
-                                          .Include(x => x.Usuario)
-                                          .ToListAsync();
+                .AsNoTracking()
+                .Include(x => x.Usuario)
+                .ToListAsync();
 
             var dashBoardViewModel = new List<DashBoardViewModel>();
 

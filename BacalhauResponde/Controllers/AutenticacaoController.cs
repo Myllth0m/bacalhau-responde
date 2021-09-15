@@ -26,26 +26,19 @@ namespace BacalhauResponde.Controllers
         [HttpPost]
         public async Task<IActionResult> Entrar(LoginViewModel loginViewModel)
         {
-            try
-            {
-                var usuario = await gerenciadorDeUsuario.FindByEmailAsync(loginViewModel.Email);
+            var usuario = await gerenciadorDeUsuario.FindByEmailAsync(loginViewModel.Email);
 
+            if (usuario is not null)
+            {
                 var resultadoDaTentativaDeLogin = await gerenciadorDeAcesso.PasswordSignInAsync(usuario, loginViewModel.Senha, false, true);
 
                 if (resultadoDaTentativaDeLogin.Succeeded)
                     return RedirectToAction("Index", "Home");
-                else
-                {
-                    NotificarErro("Verifique se seu e-mail e senha estão corretos");
-                    return View(loginViewModel);
-                }
             }
-            catch (System.Exception)
-            {
 
-                    NotificarErro();
-                    return View(loginViewModel);
-            }
+            NotificarErro("Verifique se seu e-mail e senha estão corretos");
+
+            return View(loginViewModel);
         }
 
         public async Task<IActionResult> Sair()
