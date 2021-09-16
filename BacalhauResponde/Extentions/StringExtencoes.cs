@@ -6,6 +6,9 @@
         {
             int identificadorDoPrimeiroEspacoEmBranco = nomeCompleto.IndexOf(" ");
 
+            if (identificadorDoPrimeiroEspacoEmBranco.Equals(-1))
+                return nomeCompleto;
+
             string primeiroNome = nomeCompleto.Substring(0, identificadorDoPrimeiroEspacoEmBranco);
 
             return primeiroNome;

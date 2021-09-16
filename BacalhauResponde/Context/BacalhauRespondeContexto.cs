@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using BacalhauResponde.Context.Maps;
 using BacalhauResponde.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -26,13 +27,12 @@ namespace BacalhauResponde.Context
             builder.HasDefaultSchema("BacalhauResponde");
 
             builder.Entity<Usuario>()
-                   .ToTable("Usuarios");
+                   .ToTable("Usuarios")
+                   .HasIndex(x => x.UserName)
+                   .IsUnique(false);
 
-            builder.Entity<Pergunta>()
-                   .ToTable("Perguntas");
-
-            builder.Entity<Resposta>()
-                   .ToTable("Respostas");
+            builder.ApplyConfiguration(new PerguntaMap());
+            builder.ApplyConfiguration(new RespostaMap());
 
             base.OnModelCreating(builder);
         }
